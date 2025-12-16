@@ -31,7 +31,7 @@ php artisan wayfinder:generate
 
 ### Notes & next steps
 - Edit the generated Form Requests to tune validation and the Controller methods to implement persistence logic.
-- Frontend stubs include a simple table placeholder and an Inertia `<Form>` using `useForm`.
+- Frontend stubs include a simple paginated list on the Index page (wired to the controller via Inertia) and an Inertia `<Form>` using `useForm` for Create/Edit pages.
 - Supported field types: `string` (default), `text`, `integer`, `bigint`, `boolean`, `datetime`.
 - Future improvements: add nullable/unique modifiers, foreign key support, full list API wiring with Wayfinder.
 

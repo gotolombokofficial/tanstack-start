@@ -103,7 +103,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     { title: '{$title}', href: dashboard().url },
 ];
 
-export default function Index() {
+export default function Index({ posts }: { posts: { data: any[]; meta?: any } }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="{$title}" />
@@ -112,6 +112,7 @@ export default function Index() {
                     <h1 className="text-lg font-semibold">{$title}</h1>
                     <Link href={'/{$table}/create'} className="btn">Create</Link>
                 </div>
+
                 <div className="overflow-x-auto">
                     <table className="min-w-full table-fixed">
                         <thead>
@@ -122,15 +123,21 @@ export default function Index() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>—</td>
-                                <td>Placeholder</td>
-                                <td>
-                                    <Link href={'/{$table}/1/edit'} className="btn">Edit</Link>
-                                </td>
-                            </tr>
+                            {posts?.data?.map((post: any) => (
+                                <tr key={post.id}>
+                                    <td className="pr-4">{post.id}</td>
+                                    <td className="pr-4">{post.title}</td>
+                                    <td>
+                                        <Link href={'/{$table}/' + post.id + '/edit'} className="btn">Edit</Link>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
+
+                    {posts?.meta && (
+                        <div className="mt-4">Page {posts.meta.current_page} of {posts.meta.last_page}</div>
+                    )}
                 </div>
             </div>
         </AppLayout>
