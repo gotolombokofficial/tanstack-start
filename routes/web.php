@@ -23,6 +23,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // CRUD routes for Widget
     Route::resource('widgets', App\Http\Controllers\WidgetController::class);
+
+    // CRUD routes for Product
+    Route::resource('products', App\Http\Controllers\ProductController::class);
 });
 
 require __DIR__.'/settings.php';
